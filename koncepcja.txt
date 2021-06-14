@@ -1,0 +1,5 @@
+jutro:
+- stworzyc obrazek reprezentujacy pole i armate
+- funkcja asm dostaje wspolrzedne (sila i kat) oraz czas od wystrzalu
+- zwraca (przez rejestry?) wspolrzedne, w ktorych trzeba narysowac pilke
+- pętla rysuje

@@ -1,27 +1,18 @@
-# gcc
 CC=gcc
-CFLAGS=-m32
-LFLAGS=-L/usr/lib -lallegro
-INCLUDE=-I/usr/include/allegro5
-
-# asm
 ASM=nasm
-ASMFLAGS=-f elf32
 
-# objects
-COBJS=ballshooter.c
-ASMOBJS=balldrawer.asm
 
-#output name
-OUT=ballshooter.out
+all: main.o drawball.o
+		$(CC) main.o drawball.o -o ballshooter -lallegro -lallegro_font
 
-all: asm cprog
+main.o: main.c
+		$(CC) -c main.c -o main.o
+
+drawball.o: drawball.asm
+		$(ASM) -f elf64 -g drawball.asm
 
 clean:
-		rm -rf *.o a.out
+		rm -rf *.o
 
-cprog: $(OBJS)
-		$(CC) $(CFLAGS) $(COBJS) -o $(OUT) $(LFLAGS) $(INCLUDE)
-
-asm: $(ASMOBJS)
-		$(ASM) $(ASMFLAGS) -o asm.o $(ASMOBJS) 
+run: all clean
+	./ballshooter
